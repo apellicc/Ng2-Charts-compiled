@@ -29,22 +29,17 @@ var BaseChartDirective = (function () {
         }
     };
     BaseChartDirective.prototype.ngOnChanges = function (changes) {
-        if (this.initFlag) {
-            // Check if the changes are in the data or datasets
-            if (changes.hasOwnProperty('data') || changes.hasOwnProperty('datasets')) {
-                if (changes['data']) {
-                    this.updateChartData(changes['data'].currentValue);
-                }
-                else {
-                    this.updateChartData(changes['datasets'].currentValue);
-                }
-                this.chart.update();
-            }
-            else {
-                // otherwise rebuild the chart
-                this.refresh();
-            }
-        }
+	    if (this.initFlag) {
+		    if (changes.hasOwnProperty('data') || changes.hasOwnProperty('labels')) {
+			    this.chart.data.datasets = this.getDatasets();
+			    this.chart.data.labels = this.labels;
+			    this.chart.update();
+		    }
+		    else {
+			    // otherwise rebuild the chart
+			    this.refresh();
+		    }
+	    }
     };
     BaseChartDirective.prototype.ngOnDestroy = function () {
         if (this.chart) {
