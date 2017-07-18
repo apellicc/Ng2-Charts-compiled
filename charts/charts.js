@@ -133,6 +133,9 @@ var BaseChartDirective = (function () {
         this.ngOnDestroy();
         this.chart = this.getChartBuilder(this.ctx /*, data, this.options*/);
     };
+    BaseChartDirective.prototype.registerPlugin = function (plugin) {
+        Chart.pluginService.register(plugin);
+    }
     return BaseChartDirective;
 }());
 BaseChartDirective.defaultColors = [

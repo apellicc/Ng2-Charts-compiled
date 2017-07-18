@@ -23,6 +23,7 @@ export declare class BaseChartDirective implements OnDestroy, OnChanges, OnInit 
     private updateChartData(newDataValues);
     private getDatasets();
     private refresh();
+    private registerPlugin();
 }
 export interface Color {
     backgroundColor?: string | string[];
